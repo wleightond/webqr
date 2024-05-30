@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
+        <script src="https://cdn.jsdelivr.net/pyodide/v0.26.0/full/pyodide.js"></script>
+        <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+        <title>QR Code Generator</title>
+    </head>
+    <body class="container">
+        <header>
+            <h1>QR Code Generator</h1>
+        </header>
+
+        <main>
+            <p>Enter your url or text below:</p>
+
+            <input class="source-text" type="text" style="width:80%" aria-busy="true"
+                _=" on every keyup[key=='Enter'] makeCode() "/>
+
+                <div class="button-container" aria-busy="true">
+                <button class="generate" _=" on click makeCode() " hidden="true">
+                    Generate
+                </button>
+                <a role="button" class="download" href="" download="qrcode.png" hidden="true">
+                    Download
+                </a>
+            </div>
+
+            <br />
+
+            <img class="qr-code" style="max-width: 40%; padding-top: 15px;" >
+        </main>
+
+        <footer>
+            Made with 💚 by <a href="https://github.com/wleightond">wleightond</a>
+        </footer>
+        <script type="text/javascript">
+            const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+
+            // we need to keep a copy of pyodide around 
+            // so we don't have to keep reinstalling segno on every call
+            var state = {ready: false};
+            async function setup() {
+                let pyodide = await loadPyodide();
+                state.pyodide = pyodide;
+                await state.pyodide.loadPackage("micropip");
+                const micropip = await state.pyodide.pyimport("micropip");
+                await micropip.install("segno");
+                state.ready = true;
+                document.getElementsByClassName('button-container')[0].ariaBusy = false;
+                document.getElementsByClassName('generate')[0].removeAttribute('hidden');
+                document.getElementsByClassName('download')[0].removeAttribute('hidden');
+            }
+            setup();
+
+            async function makeCode() {
+                // the setup is async, so wait until it's done before trying to generate
+                while (!state.ready) {await sleep(100)};
+
+                await state.pyodide.runPython(`
+                    import js, segno
+                    value = js.document.getElementsByClassName("source-text")[0].value
+
+                    datauri = segno.make(value).png_data_uri(scale=16)
+
+                    js.document.getElementsByClassName("download")[0].href=datauri
+                    js.document.getElementsByClassName("qr-code")[0].src=datauri
+                `);
+            }
+          </script>
+    </body>
+</html>
