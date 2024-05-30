@@ -15,14 +15,14 @@
         <main>
             <p>Enter your url or text below:</p>
 
-            <input class="source-text" type="text" style="width:80%" aria-busy="true"
+            <input class="source-text" type="text" style="width:80%"
                 _=" on every keyup[key=='Enter'] makeCode() "/>
 
-                <div class="button-container" aria-busy="true">
-                <button class="generate" _=" on click makeCode() " hidden="true">
+            <div>
+                <button class="generate" _=" on click makeCode() ">
                     Generate
                 </button>
-                <a role="button" class="download" href="" download="qrcode.png" hidden="true">
+                <a role="button" class="download" href="" download="qrcode.png">
                     Download
                 </a>
             </div>
@@ -48,9 +48,6 @@
                 const micropip = await state.pyodide.pyimport("micropip");
                 await micropip.install("segno");
                 state.ready = true;
-                document.getElementsByClassName('button-container')[0].ariaBusy = false;
-                document.getElementsByClassName('generate')[0].removeAttribute('hidden');
-                document.getElementsByClassName('download')[0].removeAttribute('hidden');
             }
             setup();
 
