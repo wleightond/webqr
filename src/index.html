@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>QR Code Generator</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
-        <script src="https://cdn.jsdelivr.net/pyodide/v0.26.0/full/pyodide.js"></script>
+        <script src="https://cdn.jsdelivr.net/pyodide/v0.26.0/full/pyodide.js" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
-        <title>QR Code Generator</title>
+        <script type="text/javascript">
+            "use strict";
+            const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
+
+            // we need to keep a copy of pyodide around 
+            // so we don't have to keep reinstalling segno on every call
+            var state = {ready: false};
+            async function setup() {
+                let pyodide = await loadPyodide();
+                state.pyodide = pyodide;
+                await state.pyodide.loadPackage("micropip");
+                const micropip = await state.pyodide.pyimport("micropip");
+                await micropip.install("segno");
+                state.ready = true;
+            }
+            setup();
+        </script>
     </head>
     <body class="container">
         <header>
@@ -15,7 +32,7 @@
         <main>
             <p>Enter your url or text below:</p>
 
-            <input class="source-text" type="text" style="width:80%"
+            <input class="source-text" name="source-text" type="text" style="width:80%"
                 _=" on every keyup[key=='Enter'] makeCode() "/>
 
             <div>
@@ -35,22 +52,9 @@
         <footer>
             Made with 💚 by <a href="https://github.com/wleightond">wleightond</a>
         </footer>
+
         <script type="text/javascript">
-            const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
-
-            // we need to keep a copy of pyodide around 
-            // so we don't have to keep reinstalling segno on every call
-            var state = {ready: false};
-            async function setup() {
-                let pyodide = await loadPyodide();
-                state.pyodide = pyodide;
-                await state.pyodide.loadPackage("micropip");
-                const micropip = await state.pyodide.pyimport("micropip");
-                await micropip.install("segno");
-                state.ready = true;
-            }
-            setup();
-
+            "use strict";
             async function makeCode() {
                 // the setup is async, so wait until it's done before trying to generate
                 while (!state.ready) {await sleep(100)};
