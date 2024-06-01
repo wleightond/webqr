@@ -3,4 +3,4 @@
   Cross-Origin-Opener-Policy: same-origin
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
-  Content-Security-Policy: script-src 'self' 'unsafe-eval' https://cdn.jsdelivr.net/pyodide/v0.26.0/full/ https://unpkg.com/hyperscript.org@0.9.12; style-src https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css; img-src data; object-src 'none'
+  Content-Security-Policy: script-src 'self' 'unsafe-eval' https://cdn.jsdelivr.net/pyodide/v0.26.0/full/ https://unpkg.com/hyperscript.org@0.9.12; style-src 'unsafe-inline' https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css; img-src data:; object-src 'none'
