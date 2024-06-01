@@ -7,4 +7,4 @@ As an MVP, this project uses none of that configurability, but gives you a stati
 
 To keep it dead simple, I used [PicoCSS](https://picocss.com/) and [_Hyperscript](https://hyperscript.org/). To get Segno running in the browser I used [Pyodide](https://pyodide.org/).
 
-If you would like to run it yourself, you can host a copy of `index.html` by whatever means you like.
+If you would like to run it yourself, you can host a copy of `src/index.html` by whatever means you like.
