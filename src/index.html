@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <title>QR Code Generator</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,9 +14,9 @@
         </header>
 
         <main>
-            <p>Enter your url or text below:</p>
+            <p id="label">Enter your url or text below:</p>
 
-            <input class="source-text" name="source-text" type="text" style="width:80%"
+            <input class="source-text" name="source-text" type="text" style="width:80%" aria-labelledby="label"
                 _=" on every keyup[key=='Enter'] makeCode() "/>
 
             <div>
@@ -30,7 +30,7 @@
 
             <br />
 
-            <img class="qr-code" style="max-width: 40%; padding-top: 15px;" >
+            <img class="qr-code" style="max-width: 40%; padding-top: 15px;">
         </main>
 
         <footer>
