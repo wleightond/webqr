@@ -1,18 +1,19 @@
 "use strict";
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
-// we need to keep a copy of pyodide around 
-// so we don't have to keep reinstalling segno on every call
 var state = {ready: false};
-async function setup() {
+(async () => {
     let pyodide = await loadPyodide();
     state.pyodide = pyodide;
     await state.pyodide.loadPackage("micropip");
     const micropip = await state.pyodide.pyimport("micropip");
     await micropip.install("segno");
     state.ready = true;
+})()
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./sw.js', { scope: './' });
 }
-setup();
 
 async function makeCode() {
     // the setup is async, so wait until it's done before trying to generate
