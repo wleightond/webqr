@@ -26,5 +26,7 @@ async function makeCode() {
 
         js.document.getElementsByClassName("download")[0].href=datauri
         js.document.getElementsByClassName("qr-code")[0].src=datauri
+        js.document.getElementsByClassName("qr-code")[0].alt=value
+        js.document.getElementsByClassName("qr-code")[0].hidden=False
     `);
 }
