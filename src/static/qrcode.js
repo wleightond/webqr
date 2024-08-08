@@ -12,7 +12,7 @@ var state = {ready: false};
 })()
 
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('./sw.js', { scope: './' });
+    navigator.serviceWorker.register('./static/sw.js', { scope: './' });
 }
 
 async function makeCode() {
