@@ -4,9 +4,18 @@
         <title>QR Code Generator</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="A simple QR code generator. No ads. No registration.">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"/>
-        <script src="https://cdn.jsdelivr.net/pyodide/v0.26.0/full/pyodide.js" crossorigin="anonymous"></script>
-        <script src="https://unpkg.com/hyperscript.org@0.9.12" crossorigin="anonymous"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+            integrity="sha256-3V/VWRr9ge4h3MEXrYXAFNw/HxncLXt9EB6grMKSdMI=" 
+            crossorigin="anonymous"
+            />
+        <script src="https://cdn.jsdelivr.net/pyodide/v0.26.0/full/pyodide.js"
+            integrity="sha256-lecuPSYDHB7IomUAkwF5+QdCCETXpOP+2VBAZU0U4vI="
+            crossorigin="anonymous"></script>
+        <script src="https://unpkg.com/hyperscript.org@0.9.12"
+            integrity="sha256-zXN+mQSn7tHuljm3XrB5FbqtkpYVhtCh/W2ZjSQXneY="
+            crossorigin="anonymous"></script>
         <script src="static/qrcode.js"></script>
     </head>
     <body class="container">
@@ -31,11 +40,11 @@
 
             <br />
 
-            <img class="qr-code" style="max-width: 40%; padding-top: 15px;">
+            <img class="qr-code" style="max-width: 40%; padding-top: 15px;" alt="The generated image will go here." hidden>
         </main>
 
         <footer>
-            Made with 💚 by <a href="https://github.com/wleightond">wleightond</a>
+            Made with 💚 by <a href="https://github.com/wleightond/webqr">wleightond</a>
         </footer>
     </body>
 </html>
