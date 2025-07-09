@@ -4,7 +4,7 @@
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   X-Robots-Tag: all
-  Content-Security-Policy: script-src 'self' 'unsafe-eval' https://cdn.jsdelivr.net/pyodide/v0.26.0/full/ https://unpkg.com/hyperscript.org@0.9.12 https://static.cloudflareinsights.com/beacon.min.js https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015; style-src 'unsafe-inline' https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css; img-src 'self' static/* https: data:; object-src 'none'
+  Content-Security-Policy: script-src 'self' 'unsafe-eval' https://cdn.jsdelivr.net/pyodide/v0.26.0/full/ https://unpkg.com/hyperscript.org@0.9.12 https://static.cloudflareinsights.com/ https://static.cloudflareinsights.com/beacon.min.js/; style-src 'unsafe-inline' https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css; img-src 'self' static/* https: data:; object-src 'none'
   Service-Worker-Allowed: /
 
 /static/*.js
