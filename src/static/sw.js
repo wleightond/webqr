@@ -4,10 +4,17 @@ self.addEventListener('install', event => {
   })());
 });
 
+self.addEventListener('activate', event => {
+  event.waitUntil(self.clients.claim()); // Takes control of all pages immediately
+});
+
 self.addEventListener('fetch', event => {
   event.respondWith((async () => {
     try {
-      const fetchResponse = await fetch(event.request);
+      const newRequest = new Request(event.request, {
+        referrer: (event.request.referrer?event.request.referrer:event.registration.scope)
+      });
+      const fetchResponse = await fetch(newRequest);
       return fetchResponse;
     } catch (e) {
       // The network failed
