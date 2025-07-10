@@ -9,15 +9,13 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  event.respondWith((async () => {
-    try {
-      const newRequest = new Request(event.request, {
-        referrer: (event.request.referrer?event.request.referrer:event.registration.scope)
-      });
-      const fetchResponse = await fetch(newRequest);
-      return fetchResponse;
-    } catch (e) {
-      // The network failed
-    }
-  })());
+  // if (event.request.url.includes('cdn-cgi/rum')) return;
+  // event.respondWith((async () => {
+  //   try {
+  //     const fetchResponse = await fetch(event.request);
+  //     return fetchResponse;
+  //   } catch (e) {
+  //     // The network failed
+  //   }
+  // })());
 }); 
